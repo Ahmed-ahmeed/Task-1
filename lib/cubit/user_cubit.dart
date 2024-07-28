@@ -1,3 +1,4 @@
+import 'package:deneme/cahce/cahce_helper.dart';
 import 'package:deneme/core/api/api_consumer.dart';
 import 'package:deneme/core/api/end_points.dart';
 import 'package:deneme/core/errors/exceptions.dart';
@@ -98,9 +99,9 @@ class UserCubit extends Cubit<UserState> {
       
       );
       user = SignInModel.fromJson(response);
+         CacheHelper.saveData(key: ApiKey.token, value:  user!.token);
       final decodedToken = JwtDecoder.decode(user!.token);
       print(decodedToken['userId']);
-
       emit(SignInSuccess(user: user!));
     } on SereverException catch (e) {
       emit(SignInFailure(errMessage: e.errModel.message));

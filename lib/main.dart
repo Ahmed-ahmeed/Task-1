@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
    WidgetsFlutterBinding.ensureInitialized();
-  CacheHelper().init();
+  CacheHelper.init();
   runApp(
     BlocProvider(
       create: (context) => UserCubit(DioConsumer(dio: Dio())),
